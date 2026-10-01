@@ -1,0 +1,156 @@
+.dashboard {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+h1 {
+  margin: 0 0 12px;
+}
+
+.intro {
+  color: #536174;
+  margin-bottom: 24px;
+}
+
+.kpi-grid,
+.widget-grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.kpi-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.widget-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.widget {
+  height: 100%;
+  padding: 20px;
+  border: 1px solid #d8dfe8;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.widget h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+
+.widget p {
+  margin: 0 0 16px;
+}
+
+.widget p:last-child {
+  margin-bottom: 0;
+}
+
+.kpi-value,
+.counter-value {
+  font-size: 28px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button,
+select {
+  border: 1px solid #b7c3d2;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #1d2939;
+  background: #f5f7fa;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e4eaf2;
+}
+
+button:focus-visible,
+select:focus-visible {
+  outline: 2px solid #245bb2;
+  outline-offset: 3px;
+}
+
+.toggle-light .widget {
+  color: #1d2939;
+  background: #fff;
+}
+
+.toggle-dark .widget {
+  color: #f5f7fa;
+  background: #202b3c;
+  border-color: #202b3c;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.coin-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.coin-list li {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid #e4eaf2;
+}
+
+.coin-list li:last-child {
+  border-bottom: 0;
+}
+
+.symbol,
+.change-neutral {
+  color: #536174;
+}
+
+.symbol {
+  margin-left: 8px;
+}
+
+.coin-values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.change-positive {
+  color: #167044;
+}
+
+.change-negative,
+.error {
+  color: #b42318;
+}
+
+@media (max-width: 680px) {
+  .kpi-grid,
+  .widget-grid {
+    grid-template-columns: 1fr;
+  }
+}
