@@ -4,4 +4,8 @@ export type Coin = {
   symbol: string
   current_price: number | null
   price_change_percentage_24h: number | null
+  market_cap: number | null
 }
+
+export type SortField = 'name' | 'current_price'
+export type SortDirection = 'asc' | 'desc'
