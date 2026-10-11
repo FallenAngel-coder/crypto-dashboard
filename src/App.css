@@ -76,8 +76,13 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background: #e4eaf2;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 button:focus-visible,
@@ -146,6 +151,35 @@ select:focus-visible {
 .change-negative,
 .error {
   color: #b42318;
+}
+
+.coin-table {
+  margin-top: 16px;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.coin-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.coin-table th,
+.coin-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e4eaf2;
+  text-align: left;
+}
+
+.coin-table th {
+  background: #f5f7fa;
+}
+
+.coin-table td:nth-child(n + 3) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 680px) {
