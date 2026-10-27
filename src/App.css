@@ -63,7 +63,8 @@ h1 {
 }
 
 button,
-select {
+select,
+input {
   border: 1px solid #b7c3d2;
   border-radius: 6px;
   padding: 8px 12px;
@@ -81,7 +82,8 @@ button:hover {
 }
 
 button:focus-visible,
-select:focus-visible {
+select:focus-visible,
+input:focus-visible {
   outline: 2px solid #245bb2;
   outline-offset: 3px;
 }
@@ -148,6 +150,69 @@ select:focus-visible {
   color: #b42318;
 }
 
+<<<<<<< Updated upstream
+=======
+.coin-table {
+  margin-top: 16px;
+}
+
+.filter-panel {
+  margin-bottom: 16px;
+}
+
+.filters-form {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filters-form label {
+  display: grid;
+  flex: 1 1 180px;
+  gap: 8px;
+}
+
+.filters-form input,
+.filters-form select {
+  width: 100%;
+  min-width: 0;
+}
+
+.filters-form small {
+  color: #536174;
+}
+
+.filters-form button {
+  align-self: center;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.coin-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.coin-table th,
+.coin-table td {
+  padding: 12px;
+  border-bottom: 1px solid #e4eaf2;
+  text-align: left;
+}
+
+.coin-table th {
+  background: #f5f7fa;
+}
+
+.coin-table td:nth-child(n + 3) {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+>>>>>>> Stashed changes
 @media (max-width: 680px) {
   .kpi-grid,
   .widget-grid {
