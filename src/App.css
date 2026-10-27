@@ -77,8 +77,13 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   background: #e4eaf2;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 button:focus-visible,
@@ -150,41 +155,8 @@ input:focus-visible {
   color: #b42318;
 }
 
-<<<<<<< Updated upstream
-=======
 .coin-table {
   margin-top: 16px;
-}
-
-.filter-panel {
-  margin-bottom: 16px;
-}
-
-.filters-form {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.filters-form label {
-  display: grid;
-  flex: 1 1 180px;
-  gap: 8px;
-}
-
-.filters-form input,
-.filters-form select {
-  width: 100%;
-  min-width: 0;
-}
-
-.filters-form small {
-  color: #536174;
-}
-
-.filters-form button {
-  align-self: center;
 }
 
 .table-scroll {
@@ -212,7 +184,6 @@ input:focus-visible {
   font-variant-numeric: tabular-nums;
 }
 
->>>>>>> Stashed changes
 @media (max-width: 680px) {
   .kpi-grid,
   .widget-grid {

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Coin } from '../types'
+import { filterCoins } from '../filterCoins'
 import Widget from './Widget'
 
 type FilteredListProps = {
@@ -9,19 +10,7 @@ type FilteredListProps = {
 
 function FilteredList({ title, items }: FilteredListProps) {
   const [category, setCategory] = useState('all')
-  const filteredItems = items.filter((coin) => {
-    const change = coin.price_change_percentage_24h
-
-    if (category === 'rising') {
-      return change !== null && change > 0
-    }
-
-    if (category === 'falling') {
-      return change !== null && change < 0
-    }
-
-    return true
-  })
+  const filteredItems = filterCoins(items, category)
 
   return (
     <Widget title={title}>
@@ -33,7 +22,6 @@ function FilteredList({ title, items }: FilteredListProps) {
           <option value="falling">Падають</option>
         </select>
       </label>
-
       {filteredItems.length === 0 ? <p>Монет для цієї категорії немає.</p> : (
         <ul className="coin-list">
           {filteredItems.map((coin) => (
