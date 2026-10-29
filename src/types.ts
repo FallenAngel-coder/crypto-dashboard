@@ -9,3 +9,10 @@ export type Coin = {
 
 export type SortField = 'name' | 'current_price'
 export type SortDirection = 'asc' | 'desc'
+
+export type CoinFilters = {
+  search: string
+  order: 'market_cap_desc' | 'volume_desc'
+  limit: 10 | 50 | 100
+}
+
