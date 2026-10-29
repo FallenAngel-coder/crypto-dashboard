@@ -159,6 +159,37 @@ input:focus-visible {
   margin-top: 16px;
 }
 
+.filter-panel {
+  margin-bottom: 16px;
+}
+
+.filters-form {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filters-form label {
+  display: grid;
+  flex: 1 1 180px;
+  gap: 8px;
+}
+
+.filters-form input,
+.filters-form select {
+  width: 100%;
+  min-width: 0;
+}
+
+.filters-form small {
+  color: #536174;
+}
+
+.filters-form button {
+  align-self: center;
+}
+
 .table-scroll {
   overflow-x: auto;
 }
