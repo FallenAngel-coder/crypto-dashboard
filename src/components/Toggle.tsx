@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useContext } from 'react'
+import { ThemeContext } from '../context/ThemeContext'
 import Widget from './Widget'
 
 type ToggleProps = {
@@ -6,17 +7,22 @@ type ToggleProps = {
 }
 
 function Toggle({ title }: ToggleProps) {
-  const [isDark, setIsDark] = useState(false)
+  const context = useContext(ThemeContext)
+
+  if (!context) {
+    throw new Error('Toggle потребує ThemeProvider')
+  }
+
+  const { theme, toggleTheme } = context
+  const isDark = theme === 'dark'
 
   return (
-    <div className={isDark ? 'toggle-dark' : 'toggle-light'}>
-      <Widget title={title}>
-        {isDark ? <p>Активний режим: темний.</p> : <p>Активний режим: світлий.</p>}
-        <button type="button" aria-pressed={isDark} onClick={() => setIsDark((value) => !value)}>
-          Перемкнути оформлення
-        </button>
-      </Widget>
-    </div>
+    <Widget title={title}>
+      {isDark ? <p>Активний режим: темний.</p> : <p>Активний режим: світлий.</p>}
+      <button type="button" aria-pressed={isDark} onClick={toggleTheme}>
+        Перемкнути оформлення
+      </button>
+    </Widget>
   )
 }
 

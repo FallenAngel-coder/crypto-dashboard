@@ -16,3 +16,17 @@ export type CoinFilters = {
   limit: 10 | 50 | 100
 }
 
+export type CoinDetails = {
+  id: string
+  name?: string | null
+  symbol?: string | null
+  market_data?: {
+    current_price?: { usd?: number | null } | null
+    price_change_percentage_24h?: number | null
+    total_volume?: { usd?: number | null } | null
+    high_24h?: { usd?: number | null } | null
+    low_24h?: { usd?: number | null } | null
+    circulating_supply?: number | null
+  } | null
+}
+

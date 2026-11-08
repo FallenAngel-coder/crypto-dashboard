@@ -1,23 +1,25 @@
-import { useMemo, useState } from 'react'
-import { useForm, useWatch } from 'react-hook-form'
+import { useContext, useMemo, useState } from 'react'
+import { useWatch } from 'react-hook-form'
+import { useNavigate } from 'react-router'
+import { FiltersContext } from '../context/FiltersContext'
 import KpiCard from './KpiCard'
 import CoinTable from './CoinTable'
 import Counter from './Counter'
-import Toggle from './Toggle'
 import FilteredList from './FilteredList'
 import FilterPanel from './FilterPanel'
 import { useDebounce } from '../hooks/useDebounce'
 import { useCoins } from '../hooks/useCoins'
-import type { CoinFilters, SortDirection, SortField } from '../types'
-
-const defaultFilters: CoinFilters = {
-  search: '',
-  order: 'market_cap_desc',
-  limit: 100,
-}
+import type { SortDirection, SortField } from '../types'
 
 function DashboardContainer() {
-  const { control, reset } = useForm<CoinFilters>({ defaultValues: defaultFilters })
+  const filters = useContext(FiltersContext)
+  const navigate = useNavigate()
+
+  if (!filters) {
+    throw new Error('DashboardContainer потребує FiltersProvider')
+  }
+
+  const { control } = filters
   const [search, order, limit] = useWatch({ control, name: ['search', 'order', 'limit'] })
   const parameters = useMemo(() => ({ search, order, limit }), [search, order, limit])
   const debouncedParameters = useDebounce(parameters, 400)
@@ -59,7 +61,7 @@ function DashboardContainer() {
 
   return (
     <>
-      <FilterPanel control={control} onReset={() => reset(defaultFilters)} />
+      <FilterPanel />
 
       {loading ? <p role="status">Завантаження даних…</p>
         : error ? <p className="error" role="alert">{error}</p>
@@ -81,7 +83,6 @@ function DashboardContainer() {
 
       <div className="widget-grid">
         <Counter title="Лічильник" initialValue={0} step={1} min={0} max={10} />
-        <Toggle title="Оформлення секції" />
       </div>
 
       <div hidden={!hasData}>
@@ -94,6 +95,7 @@ function DashboardContainer() {
           sortField={sortField}
           sortDirection={sortDirection}
           onSort={handleSort}
+          onSelect={(id) => navigate(`/coin/${encodeURIComponent(id)}`)}
         />
       )}
     </>

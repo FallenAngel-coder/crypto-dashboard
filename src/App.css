@@ -1,3 +1,36 @@
+.app {
+  --page-background: #f3f5f8;
+  --surface: #fff;
+  --text: #1d2939;
+  --muted: #536174;
+  --border: #d8dfe8;
+  --control-border: #b7c3d2;
+  --control-background: #f5f7fa;
+  --hover-background: #e4eaf2;
+  --focus: #245bb2;
+  --positive: #167044;
+  --negative: #b42318;
+  color-scheme: light;
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--page-background);
+}
+
+.theme-dark {
+  --page-background: #141c28;
+  --surface: #202b3c;
+  --text: #f5f7fa;
+  --muted: #b7c3d2;
+  --border: #40516a;
+  --control-border: #60738e;
+  --control-background: #2c3a50;
+  --hover-background: #374a66;
+  --focus: #91baff;
+  --positive: #73daa1;
+  --negative: #ffaaa3;
+  color-scheme: dark;
+}
+
 .dashboard {
   max-width: 960px;
   margin: 0 auto;
@@ -9,7 +42,7 @@ h1 {
 }
 
 .intro {
-  color: #536174;
+  color: var(--muted);
   margin-bottom: 24px;
 }
 
@@ -31,9 +64,9 @@ h1 {
 .widget {
   height: 100%;
   padding: 20px;
-  border: 1px solid #d8dfe8;
+  border: 1px solid var(--border);
   border-radius: 10px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .widget h2 {
@@ -65,11 +98,11 @@ h1 {
 button,
 select,
 input {
-  border: 1px solid #b7c3d2;
+  border: 1px solid var(--control-border);
   border-radius: 6px;
   padding: 8px 12px;
-  color: #1d2939;
-  background: #f5f7fa;
+  color: var(--text);
+  background: var(--control-background);
   font: inherit;
 }
 
@@ -78,7 +111,7 @@ button {
 }
 
 button:hover:not(:disabled) {
-  background: #e4eaf2;
+  background: var(--hover-background);
 }
 
 button:disabled {
@@ -88,20 +121,15 @@ button:disabled {
 
 button:focus-visible,
 select:focus-visible,
-input:focus-visible {
-  outline: 2px solid #245bb2;
+input:focus-visible,
+a:focus-visible,
+.coin-row:focus-visible {
+  outline: 2px solid var(--focus);
   outline-offset: 3px;
 }
 
-.toggle-light .widget {
-  color: #1d2939;
-  background: #fff;
-}
-
-.toggle-dark .widget {
-  color: #f5f7fa;
-  background: #202b3c;
-  border-color: #202b3c;
+.theme-control {
+  margin-bottom: 16px;
 }
 
 .filter {
@@ -124,7 +152,7 @@ input:focus-visible {
   flex-wrap: wrap;
   gap: 8px 20px;
   padding: 12px 0;
-  border-bottom: 1px solid #e4eaf2;
+  border-bottom: 1px solid var(--border);
 }
 
 .coin-list li:last-child {
@@ -133,7 +161,7 @@ input:focus-visible {
 
 .symbol,
 .change-neutral {
-  color: #536174;
+  color: var(--muted);
 }
 
 .symbol {
@@ -147,12 +175,12 @@ input:focus-visible {
 }
 
 .change-positive {
-  color: #167044;
+  color: var(--positive);
 }
 
 .change-negative,
 .error {
-  color: #b42318;
+  color: var(--negative);
 }
 
 .coin-table {
@@ -183,7 +211,7 @@ input:focus-visible {
 }
 
 .filters-form small {
-  color: #536174;
+  color: var(--muted);
 }
 
 .filters-form button {
@@ -202,16 +230,54 @@ input:focus-visible {
 .coin-table th,
 .coin-table td {
   padding: 12px;
-  border-bottom: 1px solid #e4eaf2;
+  border-bottom: 1px solid var(--border);
   text-align: left;
 }
 
 .coin-table th {
-  background: #f5f7fa;
+  background: var(--control-background);
 }
 
 .coin-table td:nth-child(n + 3) {
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.coin-row {
+  cursor: pointer;
+}
+
+.coin-row:hover,
+.coin-row:focus-visible {
+  background: var(--hover-background);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--focus);
+}
+
+.coin-details {
+  margin: 0;
+}
+
+.coin-details div {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.coin-details div:last-child {
+  border-bottom: 0;
+}
+
+.coin-details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
   font-variant-numeric: tabular-nums;
 }
 

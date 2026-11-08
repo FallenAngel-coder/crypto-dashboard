@@ -6,9 +6,10 @@ type CoinTableProps = {
   sortField: SortField
   sortDirection: SortDirection
   onSort: (field: SortField) => void
+  onSelect: (id: string) => void
 }
 
-function CoinTable({ coins, sortField, sortDirection, onSort }: CoinTableProps) {
+function CoinTable({ coins, sortField, sortDirection, onSort, onSelect }: CoinTableProps) {
   const directionLabel = sortDirection === 'asc' ? '↑' : '↓'
   const ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending'
 
@@ -36,7 +37,19 @@ function CoinTable({ coins, sortField, sortDirection, onSort }: CoinTableProps) 
             </thead>
             <tbody>
               {coins.map((coin) => (
-                <tr key={coin.id}>
+                <tr
+                  key={coin.id}
+                  className="coin-row"
+                  tabIndex={0}
+                  aria-label={`Відкрити деталі ${coin.name}`}
+                  onClick={() => onSelect(coin.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      onSelect(coin.id)
+                    }
+                  }}
+                >
                   <td>{coin.name}</td>
                   <td>{coin.symbol.toUpperCase()}</td>
                   <td>{coin.current_price === null

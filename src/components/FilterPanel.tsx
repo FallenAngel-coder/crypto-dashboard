@@ -1,14 +1,16 @@
+import { useContext } from 'react'
 import { Controller } from 'react-hook-form'
-import type { Control } from 'react-hook-form'
-import type { CoinFilters } from '../types'
+import { FiltersContext } from '../context/FiltersContext'
 import Widget from './Widget'
 
-type FilterPanelProps = {
-  control: Control<CoinFilters>
-  onReset: () => void
-}
+function FilterPanel() {
+  const context = useContext(FiltersContext)
 
-function FilterPanel({ control, onReset }: FilterPanelProps) {
+  if (!context) {
+    throw new Error('FilterPanel потребує FiltersProvider')
+  }
+
+  const { control, reset } = context
   return (
     <div className="filter-panel">
       <Widget title="Фільтри вибірки">
@@ -65,7 +67,7 @@ function FilterPanel({ control, onReset }: FilterPanelProps) {
             />
           </label>
 
-          <button type="button" onClick={onReset}>Скинути фільтри</button>
+          <button type="button" onClick={() => reset()}>Скинути фільтри</button>
         </form>
       </Widget>
     </div>
