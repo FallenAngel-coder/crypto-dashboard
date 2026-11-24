@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Coin } from '../types'
 import { filterCoins } from '../filterCoins'
 import Widget from './Widget'
+import FavoriteButton from './FavoriteButton'
 
 type FilteredListProps = {
   title: string
@@ -35,6 +36,7 @@ function FilteredList({ title, items }: FilteredListProps) {
                   ? '—'
                   : `${coin.price_change_percentage_24h > 0 ? '+' : coin.price_change_percentage_24h < 0 ? '−' : ''}${Math.abs(coin.price_change_percentage_24h).toFixed(2)}%`}</span>
               </div>
+              <FavoriteButton id={coin.id} name={coin.name} />
             </li>
           ))}
         </ul>

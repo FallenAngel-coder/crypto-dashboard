@@ -1,26 +1,18 @@
-import { useContext, useMemo, useState } from 'react'
-import { useWatch } from 'react-hook-form'
-import { FiltersContext } from '../context/FiltersContext'
+import { useState } from 'react'
+import { useDashboardStore } from '../store/useDashboardStore'
 import KpiCard from './KpiCard'
 import CoinTable from './CoinTable'
 import Counter from './Counter'
 import FilteredList from './FilteredList'
 import FilterPanel from './FilterPanel'
+import ChartWidget from './ChartWidget'
 import { useDebounce } from '../hooks/useDebounce'
 import { useCoins } from '../hooks/useCoins'
 import type { SortDirection, SortField } from '../types'
 
 function DashboardContainer() {
-  const filters = useContext(FiltersContext)
-
-  if (!filters) {
-    throw new Error('DashboardContainer потребує FiltersProvider')
-  }
-
-  const { control } = filters
-  const [search, order, limit] = useWatch({ control, name: ['search', 'order', 'limit'] })
-  const parameters = useMemo(() => ({ search, order, limit }), [search, order, limit])
-  const debouncedParameters = useDebounce(parameters, 400)
+  const filters = useDashboardStore((state) => state.filters)
+  const debouncedParameters = useDebounce(filters, 400)
   const { data: coins, loading, error } = useCoins(debouncedParameters)
   const [sortField, setSortField] = useState<SortField>('name')
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc')
@@ -86,6 +78,8 @@ function DashboardContainer() {
       <div hidden={!hasData}>
         <FilteredList title="Список монет" items={coins.slice(0, 6)} />
       </div>
+
+      {hasData && <ChartWidget coins={coins} />}
 
       {hasData && (
         <CoinTable

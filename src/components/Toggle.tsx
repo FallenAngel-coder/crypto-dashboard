@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { ThemeContext } from '../context/ThemeContext'
+import { useDashboardStore } from '../store/useDashboardStore'
 import Widget from './Widget'
 
 type ToggleProps = {
@@ -7,13 +6,8 @@ type ToggleProps = {
 }
 
 function Toggle({ title }: ToggleProps) {
-  const context = useContext(ThemeContext)
-
-  if (!context) {
-    throw new Error('Toggle потребує ThemeProvider')
-  }
-
-  const { theme, toggleTheme } = context
+  const theme = useDashboardStore((state) => state.theme)
+  const toggleTheme = useDashboardStore((state) => state.toggleTheme)
   const isDark = theme === 'dark'
 
   return (

@@ -10,6 +10,9 @@ export type Coin = {
 export type SortField = 'name' | 'current_price'
 export type SortDirection = 'asc' | 'desc'
 
+export type Theme = 'light' | 'dark'
+export type ChartType = 'line' | 'bar'
+
 export type CoinFilters = {
   search: string
   order: 'market_cap_desc' | 'volume_desc'

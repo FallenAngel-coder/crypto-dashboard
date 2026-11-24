@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router'
 import Widget from '../components/Widget'
+import FavoriteButton from '../components/FavoriteButton'
 import { useCoinDetails } from '../hooks/useCoinDetails'
 
 function formatUsd(value: number | null | undefined) {
@@ -22,6 +23,7 @@ function CoinDetailsPage() {
           : error ? <p className="error" role="alert">{error}</p>
             : data && (
               <Widget title={data.name ?? '—'}>
+                <FavoriteButton id={data.id} name={data.name ?? data.id} />
                 <dl className="coin-details">
                   <div><dt>Символ</dt><dd>{data.symbol?.toUpperCase() ?? '—'}</dd></div>
                   <div><dt>Поточна ціна, USD</dt><dd>{formatUsd(market?.current_price?.usd)}</dd></div>

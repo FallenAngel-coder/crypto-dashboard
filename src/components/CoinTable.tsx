@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router'
 import type { Coin, SortDirection, SortField } from '../types'
 import Widget from './Widget'
+import FavoriteButton from './FavoriteButton'
 
 type CoinTableProps = {
   coins: Coin[]
@@ -55,7 +56,12 @@ function CoinTable({ coins, sortField, sortDirection, onSort }: CoinTableProps) 
                     }
                   }}
                 >
-                  <td>{coin.name}</td>
+                  <td>
+                    <div className="coin-name">
+                      <span>{coin.name}</span>
+                      <FavoriteButton id={coin.id} name={coin.name} />
+                    </div>
+                  </td>
                   <td>{coin.symbol.toUpperCase()}</td>
                   <td>{coin.current_price === null
                     ? '—'
