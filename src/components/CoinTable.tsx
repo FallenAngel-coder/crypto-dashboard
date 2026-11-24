@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router'
 import type { Coin, SortDirection, SortField } from '../types'
 import Widget from './Widget'
 
@@ -6,12 +7,16 @@ type CoinTableProps = {
   sortField: SortField
   sortDirection: SortDirection
   onSort: (field: SortField) => void
-  onSelect: (id: string) => void
 }
 
-function CoinTable({ coins, sortField, sortDirection, onSort, onSelect }: CoinTableProps) {
+function CoinTable({ coins, sortField, sortDirection, onSort }: CoinTableProps) {
+  const navigate = useNavigate()
   const directionLabel = sortDirection === 'asc' ? '↑' : '↓'
   const ariaSort = sortDirection === 'asc' ? 'ascending' : 'descending'
+
+  function handleSelect(id: string) {
+    navigate(`/coin/${encodeURIComponent(id)}`)
+  }
 
   return (
     <div className="coin-table">
@@ -42,11 +47,11 @@ function CoinTable({ coins, sortField, sortDirection, onSort, onSelect }: CoinTa
                   className="coin-row"
                   tabIndex={0}
                   aria-label={`Відкрити деталі ${coin.name}`}
-                  onClick={() => onSelect(coin.id)}
+                  onClick={() => handleSelect(coin.id)}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter' || event.key === ' ') {
                       event.preventDefault()
-                      onSelect(coin.id)
+                      handleSelect(coin.id)
                     }
                   }}
                 >

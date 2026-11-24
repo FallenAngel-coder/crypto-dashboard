@@ -1,6 +1,5 @@
 import { useContext, useMemo, useState } from 'react'
 import { useWatch } from 'react-hook-form'
-import { useNavigate } from 'react-router'
 import { FiltersContext } from '../context/FiltersContext'
 import KpiCard from './KpiCard'
 import CoinTable from './CoinTable'
@@ -13,7 +12,6 @@ import type { SortDirection, SortField } from '../types'
 
 function DashboardContainer() {
   const filters = useContext(FiltersContext)
-  const navigate = useNavigate()
 
   if (!filters) {
     throw new Error('DashboardContainer потребує FiltersProvider')
@@ -95,7 +93,6 @@ function DashboardContainer() {
           sortField={sortField}
           sortDirection={sortDirection}
           onSort={handleSort}
-          onSelect={(id) => navigate(`/coin/${encodeURIComponent(id)}`)}
         />
       )}
     </>
